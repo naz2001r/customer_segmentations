@@ -1,10 +1,23 @@
-FROM python:3.8-slim-buster
+# build stage
+FROM python:3.8-slim-buster AS build
 
-COPY ./ ./
-#COPY ./requirements.txt /requirements.txt
+# Create the virtual environment.
+RUN python3 -m venv /venv
+ENV PATH=/venv/bin:$PATH
+
+COPY requirements.txt .
 
 RUN python -m pip install --upgrade pip
 RUN pip install -r ./requirements.txt
+
+# Final stage:
+FROM python:3.8-slim-buster
+
+# Copy the virtual environment from the first stage.
+COPY --from=build /venv /venv
+ENV PATH=/venv/bin:$PATH
+
+COPY . .
 
 EXPOSE 8000
 
