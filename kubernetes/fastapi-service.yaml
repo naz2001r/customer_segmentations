@@ -6,14 +6,11 @@ metadata:
     kompose.version: 1.26.1 (HEAD)
   creationTimestamp: null
   labels:
-    io.kompose.service: fastapi
+    app: fastapi
   name: fastapi
 spec:
+  type: LoadBalancer
   ports:
-    - name: "8000"
-      port: 8000
-      targetPort: 8000
+    - port: 8000
   selector:
-    io.kompose.service: fastapi
-status:
-  loadBalancer: {}
+    app: fastapi

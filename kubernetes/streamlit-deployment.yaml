@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.26.1 (HEAD)
   creationTimestamp: null
   labels:
-    io.kompose.service: streamlit
+    app: streamlit
   name: streamlit
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: streamlit
+      app: streamlit
   strategy: {}
   template:
     metadata:
@@ -22,13 +22,10 @@ spec:
       creationTimestamp: null
       labels:
         io.kompose.network/customersegmentations-deploy-network: "true"
-        io.kompose.service: streamlit
+        app: streamlit
     spec:
       containers:
-        - image: naz2001r/streamlit
-          name: streamlit
+        - name: streamlit
+          image: naz2001r/streamlit
           ports:
             - containerPort: 8501
-          resources: {}
-      restartPolicy: Always
-status: {}
