@@ -5,11 +5,14 @@ resources:
 - streamlit-service.yaml
 - fastapi-deployment.yaml
 - fastapi-service.yaml
-namespace: streamlit
+namespace: python-clustering-blue
 images:
-- name: streamlit
-  newName: naz2001r/streamlit
-  newTag: 51df2746b797b4211c891dfa74b462a32ab61a7c
+- name: fastapi-backend
+  newName: naz2001r/fastapi-backend
+  newTag: 72cc9eec2955203c9b9bb4fd5f267ac13cbb535f
 - name: fastapi_backend
   newName: naz2001r/fastapi-backend
   newTag: 51df2746b797b4211c891dfa74b462a32ab61a7c
+- name: streamlit
+  newName: naz2001r/streamlit
+  newTag: 72cc9eec2955203c9b9bb4fd5f267ac13cbb535f
