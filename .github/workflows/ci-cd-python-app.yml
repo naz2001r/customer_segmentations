@@ -103,11 +103,12 @@ jobs:
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-    - id: 'Get the GKE credentials so we can deploy to the cluster'
-      uses: 'google-github-actions/get-gke-credentials@v1'
-      with:
-        cluster_name: "$GKE_CLUSTER"
-        location: "$GKE_REGION"
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+
+    - name: Get the GKE credentials so we can deploy to the cluster
+      run: |
+        gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION" --project "$PROJECT_ID"
 
     - name: Create namespace & set in Kustomize
       run: |
