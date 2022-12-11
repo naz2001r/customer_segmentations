@@ -1,7 +1,6 @@
 fastapi==0.68.0
 pillow==9.0.1
 aiofiles==0.4.0
-httpx
 uvicorn
 yellowbrick
 plotly
