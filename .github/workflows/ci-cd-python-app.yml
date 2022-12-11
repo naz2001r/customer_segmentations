@@ -63,7 +63,7 @@ jobs:
         file: ./fastapi_backend/Dockerfile
         builder: ${{ steps.buildx.outputs.name }}
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/fastapi_backend:${{ github.sha }}, ${{ secrets.DOCKER_USERNAME }}/fastapi_backend:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/fastapi-backend:${{ github.sha }}, ${{ secrets.DOCKER_USERNAME }}/fastapi-backend:latest
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -108,12 +108,12 @@ jobs:
 
     - name: Get the GKE credentials so we can deploy to the cluster
       run: |
-        gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION" --project "$PROJECT_ID"
+        gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION"
 
     - name: Create namespace & set in Kustomize
       run: |
-         namespacePresentBlue= kubectl get ns | grep python-app-blue | wc -l
-         namespacePresentGreen= kubectl get ns | grep python-app-green | wc -l
+         namespacePresentBlue=`kubectl get ns | grep python-app-blue | wc -l`
+         namespacePresentGreen=`kubectl get ns | grep python-app-green | wc -l`
          if [ $namespacePresentBlue -eq 0 ]
          then
             kubectl create ns python-app-blue
@@ -130,7 +130,6 @@ jobs:
             echo "OLD_NAMESPACE=python-app-blue" >> $GITHUB_ENV
          else
             echo "Both Blue and Green namespaces are present! Exiting"
-            echo `kubectl get ns | grep python-app-green | wc -l`
             exit 1
          fi
 
