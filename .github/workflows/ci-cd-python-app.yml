@@ -112,22 +112,22 @@ jobs:
 
     - name: Create namespace & set in Kustomize
       run: |
-         namespacePresentBlue=`kubectl get ns | grep python-app-blue | wc -l`
-         namespacePresentGreen=`kubectl get ns | grep python-app-green | wc -l`
+         namespacePresentBlue=`kubectl get ns | grep python-clustering-blue | wc -l`
+         namespacePresentGreen=`kubectl get ns | grep python-clustering-green | wc -l`
          if [ $namespacePresentBlue -eq 0 ]
          then
-            kubectl create ns python-app-blue
+            kubectl create ns python-clustering-blue
             cd k8s
-            kustomize edit set namespace python-app-blue
-            echo "NEW_NAMESPACE=python-app-blue" >> $GITHUB_ENV
-            echo "OLD_NAMESPACE=python-app-green" >> $GITHUB_ENV
+            kustomize edit set namespace python-clustering-blue
+            echo "NEW_NAMESPACE=python-clustering-blue" >> $GITHUB_ENV
+            echo "OLD_NAMESPACE=python-clustering-green" >> $GITHUB_ENV
          elif [ $namespacePresentGreen -eq 0 ]
          then
-            kubectl create ns python-app-green
+            kubectl create ns python-clustering-green
             cd k8s
-            kustomize edit set namespace python-app-green
-            echo "NEW_NAMESPACE=python-app-green" >> $GITHUB_ENV
-            echo "OLD_NAMESPACE=python-app-blue" >> $GITHUB_ENV
+            kustomize edit set namespace python-clustering-green
+            echo "NEW_NAMESPACE=python-clustering-green" >> $GITHUB_ENV
+            echo "OLD_NAMESPACE=python-clustering-blue" >> $GITHUB_ENV
          else
             echo "Both Blue and Green namespaces are present! Exiting"
             exit 1
@@ -139,7 +139,7 @@ jobs:
       run: |
        cd k8s
        kustomize edit set image streamlit=$DOCKER_USERNAME/streamlit:$GITHUB_SHA
-       kustomize edit set image fastapi-backend=$DOCKER_USERNAME/backend:$GITHUB_SHA
+       kustomize edit set image fastapi-backend=$DOCKER_USERNAME/fastapi-backend:$GITHUB_SHA
        cat kustomization.yaml
     
     - name: Deploy updated Kubernetes resources
