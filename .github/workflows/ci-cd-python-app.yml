@@ -138,7 +138,7 @@ jobs:
       run: |
        cd k8s
        kustomize edit set image streamlit=$DOCKER_USERNAME/streamlit:$GITHUB_SHA
-       kustomize edit set image fastapi_backend=$DOCKER_USERNAME/backend:$GITHUB_SHA
+       kustomize edit set image fastapi-backend=$DOCKER_USERNAME/backend:$GITHUB_SHA
        cat kustomization.yaml
 
     # - name: Update Kubernetes resources backend

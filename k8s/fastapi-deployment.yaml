@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.26.1 (HEAD)
   creationTimestamp: null
   labels:
-    app: fastapi_backend
-  name: fastapi_backend
+    app: fastapi-backend
+  name: fastapi-backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fastapi_backend
+      app: fastapi-backend
   strategy: {}
   template:
     metadata:
@@ -22,10 +22,10 @@ spec:
       creationTimestamp: null
       labels:
         io.kompose.network/customersegmentations-deploy-network: "true"
-        app: fastapi_backend
+        app: fastapi-backend
     spec:
       containers:
-        - name: fastapi_backend
-          image: fastapi_backend
+        - name: fastapi-backend
+          image: fastapi-backend
           ports:
             - containerPort: 8000
