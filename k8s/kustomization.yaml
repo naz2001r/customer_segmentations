@@ -3,8 +3,13 @@ kind: Kustomization
 resources:
 - streamlit-deployment.yaml
 - streamlit-service.yaml
+- fastapi-deployment.yaml
+- fastapi-service.yaml
 namespace: streamlit
 images:
 - name: streamlit
   newName: naz2001r/streamlit
+  newTag: 51df2746b797b4211c891dfa74b462a32ab61a7c
+- name: fastapi_backend
+  newName: naz2001r/fastapi_backend
   newTag: 51df2746b797b4211c891dfa74b462a32ab61a7c

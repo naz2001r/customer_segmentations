@@ -132,21 +132,22 @@ jobs:
             exit 1
          fi
 
-    - name: Update Kubernetes resources frondend
+    - name: Update Kubernetes resources
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run: |
        cd k8s
        kustomize edit set image streamlit=$DOCKER_USERNAME/streamlit:$GITHUB_SHA
-       cat streamlit-kustomization.yaml
-
-    - name: Update Kubernetes resources backend
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      run: |
-       cd k8s
        kustomize edit set image fastapi_backend=$DOCKER_USERNAME/backend:$GITHUB_SHA
-       cat fastapi-kustomization.yaml
+       cat kustomization.yaml
+
+    # - name: Update Kubernetes resources backend
+    #   env:
+    #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    #   run: |
+    #    cd k8s
+    #    kustomize edit set image fastapi_backend=$DOCKER_USERNAME/backend:$GITHUB_SHA
+    #    cat fastapi-kustomization.yaml
     
     - name: Deploy updated Kubernetes resources
       run: |
