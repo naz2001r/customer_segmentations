@@ -9,3 +9,4 @@ pydantic
 pandas
 numpy
 starlette
+requests
