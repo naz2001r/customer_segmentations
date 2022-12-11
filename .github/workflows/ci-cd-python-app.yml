@@ -162,6 +162,7 @@ jobs:
         git commit -am "Bump docker tag"
         
     - name: Push changes
-      uses: ad-m/github-push-action@devops-ci-cd
+      uses: ad-m/github-push-action@master
       with:
+        branch: devops-ci-cd
         github_token: ${{ secrets.GITHUB_TOKEN }} 
