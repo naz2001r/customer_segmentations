@@ -8,5 +8,4 @@ matplotlib
 pydantic
 pandas
 numpy
-starlette
 requests
