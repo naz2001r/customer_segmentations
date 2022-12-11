@@ -1,6 +1,6 @@
 
 ### Backend method
-BACKEND = "http://fastapi:8000/"
+BACKEND = "http://fastapi-backend:8000/"
 
 GET_SCALE_METHODS = BACKEND + 'scale_methods'
 GET_DIMENSION_REDUCTION_METHODS = BACKEND + 'dimension_reduction_methods'
