@@ -1,8 +1,12 @@
-from wsgiref.simple_server import demo_app
 from fastapi import FastAPI
-from src.routes.clustering import router_clustering
-from src.routes.vizualization import router_viz
-from src.models import *
+try:
+    from src.routes.clustering import router_clustering
+    from src.routes.vizualization import router_viz
+    from src.models import *
+except:
+    from fastapi_backend.src.routes.clustering import router_clustering
+    from fastapi_backend.src.routes.vizualization import router_viz
+    from fastapi_backend.src.models import *
 
 app = FastAPI(
     title="Clustering App API",

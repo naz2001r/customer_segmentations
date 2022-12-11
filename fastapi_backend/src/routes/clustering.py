@@ -1,5 +1,8 @@
 from fastapi import APIRouter
-from src.models import *
+try:
+    from src.models import *
+except:
+    from fastapi_backend.src.models import *
 
 
 router_clustering = APIRouter()
@@ -8,21 +11,30 @@ router_clustering = APIRouter()
 @router_clustering.get("/scale_methods", tags = ['Clustering'])
 def get_scale_methods():
     """Get list of scale methods"""
-    from src.constants import scale_method
+    try:
+        from src.constants import scale_method
+    except:
+        from fastapi_backend.src.constants import scale_method
     return {'scale_method': list(scale_method.keys())}
 
 
 @router_clustering.get("/dimension_reduction_methods", tags = ['Clustering'])
 def get_scale_methods():
     """Get list of dimension reduction methods"""
-    from src.constants import dimension_reduction_methods
+    try:
+        from src.constants import dimension_reduction_methods
+    except:
+        from fastapi_backend.src.constants import dimension_reduction_methods
     return {'dimension_reduction_methods': list(dimension_reduction_methods.keys())}
 
 
 @router_clustering.get("/cluster_models", tags = ['Clustering'])
 def get_scale_methods():
     """Get list of cluster models"""
-    from src.constants import cluster_models
+    try:
+        from src.constants import cluster_models
+    except:
+        from fastapi_backend.src.constants import cluster_models
     return {'cluster_models': list(cluster_models.keys())}
 
 

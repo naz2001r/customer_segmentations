@@ -1,5 +1,8 @@
 import io
-from src.models import *
+try:
+    from src.models import *
+except:
+    from fastapi_backend.src.models import *
 from fastapi import APIRouter
 from starlette.responses import Response
 

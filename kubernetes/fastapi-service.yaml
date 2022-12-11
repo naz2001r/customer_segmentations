@@ -6,11 +6,11 @@ metadata:
     kompose.version: 1.26.1 (HEAD)
   creationTimestamp: null
   labels:
-    app: fastapi
-  name: fastapi
+    app: fastapi_backend
+  name: fastapi_backend
 spec:
   type: LoadBalancer
   ports:
     - port: 8000
   selector:
-    app: fastapi
+    app: fastapi_backend
