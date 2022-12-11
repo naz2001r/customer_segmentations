@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.26.1 (HEAD)
   creationTimestamp: null
   labels:
-    app: fastapi
-  name: fastapi
+    app: streamlit
+  name: streamlit
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fastapi
+      app: streamlit
   strategy: {}
   template:
     metadata:
@@ -22,10 +22,10 @@ spec:
       creationTimestamp: null
       labels:
         io.kompose.network/customersegmentations-deploy-network: "true"
-        app: fastapi
+        app: streamlit
     spec:
       containers:
-        - name: fastapi
-          image: naz2001r/fastapi
+        - name: streamlit
+          image: streamlit
           ports:
-            - containerPort: 8000
+            - containerPort: 8501
