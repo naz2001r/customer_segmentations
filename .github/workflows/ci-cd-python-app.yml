@@ -112,8 +112,8 @@ jobs:
 
     - name: Create namespace & set in Kustomize
       run: |
-         namespacePresentBlue=`kubectl get ns | grep python-app-blue | wc -l`
-         namespacePresentGreen=`kubectl get ns | grep python-app-green | wc -l`
+         namespacePresentBlue= kubectl get ns | grep python-app-blue | wc -l
+         namespacePresentGreen= kubectl get ns | grep python-app-green | wc -l
          if [ $namespacePresentBlue -eq 0 ]
          then
             kubectl create ns python-app-blue
@@ -130,6 +130,7 @@ jobs:
             echo "OLD_NAMESPACE=python-app-blue" >> $GITHUB_ENV
          else
             echo "Both Blue and Green namespaces are present! Exiting"
+            echo `kubectl get ns | grep python-app-green | wc -l`
             exit 1
          fi
 
